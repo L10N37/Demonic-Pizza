@@ -1,0 +1,15 @@
+[
+    {
+      "name": "Lucifer's Lasagna",
+      "ingredients": ["Bolognese Sauce", "Parmesan", "Ricotta", "Mozzarella"],
+      "description": "Layers of pasta and cheese, with a devilishly delicious Bolognese sauce.",
+      "price": 13.99
+    },
+    {
+      "name": "Beelzebub's Bucatini",
+      "ingredients": ["Tomato Sauce", "Garlic", "Basil", "Parmesan"],
+      "description": "A classic pasta dish with a fiery twist. A favorite of Beelzebub himself.",
+      "price": 12.99
+    }
+  ]
+  

@@ -1,0 +1,107 @@
+{
+  "pizzas": [
+    {
+      "name": "The Hellfire",
+      "ingredients": ["Spicy Tomato Sauce", "Hot Peppers", "Jalapeño", "Ghost Pepper Cheese"],
+      "description": "A pizza so hot, it might as well have come straight from the depths of Hell. Only the bravest dare to try.",
+      "price": 15.99
+    },
+    {
+      "name": "Hades Inferno",
+      "ingredients": ["Black Olives", "Roasted Garlic", "Feta Cheese", "Hot Chili Oil"],
+      "description": "Named after the Greek god of the underworld, this pizza brings a fiery depth of flavors, sure to test your resilience.",
+      "price": 16.99
+    },
+    {
+      "name": "Aborted Fetal matter",
+      "ingredients": ["Cheese", "Tomato Sauce", "Peppers"],
+      "description": "A controversial pizza with a unique taste. Definitely not for the faint-hearted.",
+      "price": 14.99
+    },
+    {
+      "name": "Abbatoir floor scrapings",
+      "ingredients": ["Ground Beef", "Onions", "Bell Peppers", "Mushrooms"],
+      "description": "This pizza is made with a delicious mix of ingredients that come straight from the abbatoir floor. Not for the squeamish!",
+      "price": 15.99
+    },
+    {
+      "name": "Planned Murder",
+      "ingredients": ["Hot Sauce", "Ghost Peppers", "Chili Flakes", "Spicy Sausage"],
+      "description": "A pizza so spicy, it's almost criminal. Can you handle the heat?",
+      "price": 16.99
+    },
+    {
+      "name": "Triple Sinner",
+      "ingredients": ["Bacon", "Sausage", "Pepperoni"],
+      "description": "This pizza is loaded with three types of meat, making it a favorite among carnivores.",
+      "price": 17.99
+    },
+    {
+      "name": "Baby Killer",
+      "ingredients": ["Extra Spicy Pepperoni", "Jalapenos", "Hot Sauce"],
+      "description": "This pizza is not for the faint-hearted. With an extremely spicy taste, it's a true test of your spice tolerance.",
+      "price": 18.99
+    },
+    {
+      "name": "Demonic Veggie",
+      "ingredients": ["Bell Peppers", "Mushrooms", "Onions", "Black Olives", "Spinach", "Tomatoes"],
+      "description": "A horrifyingly delicious combination of fresh vegetables that will make you question your allegiance to meat.",
+      "price": 15.99
+    },
+    {
+      "name": "Tortured Hog",
+      "ingredients": ["Ham", "Pineapple", "Mozzarella"],
+      "description": "An unorthodox combination of sweet pineapple and salty ham that is surprisingly sinful.",
+      "price": 16.99
+    }
+  ],
+  "extras": [
+    {
+      "name": "Inferno Sauce",
+      "description": "Extra hot sauce made with the spiciest peppers in existence. Not for the weak!",
+      "price": 0.99
+    },
+    {
+      "name": "Cursed Chilli Flakes",
+      "description": "Add an extra kick to any pizza with these chilli flakes that have been cursed with extreme spiciness.",
+      "price": 0.49
+    },
+    {
+      "name": "Hellish Garlic Butter",
+      "description": "Extra garlic butter that's so good, it's almost sinful.",
+      "price": 0.79
+    },
+    {
+      "name": "Eternal Flame Peppers",
+      "description": "Incredibly hot peppers to add an extra layer of fire to your pizza.",
+      "price": 0.99
+    },
+    {
+      "name": "Satan's Shrooms",
+      "description": "Extra mushrooms marinated in a secret, spicy sauce. Deceptively hot!",
+      "price": 0.89
+    }
+  ],
+  "crusts": [
+    {
+      "name": "Default Crust",
+      "description": "A standard, perfectly baked crust that comes with every pizza at no extra cost.",
+      "price": 0
+    },
+    {
+      "name": "Ashen Thin Crust",
+      "description": "A thin, crispy crust blackened to perfection, bringing a taste of the underworld to your pizza.",
+      "price": 1.49
+    },
+    {
+      "name": "Demonic Deep Dish",
+      "description": "A deep dish crust with a sinful amount of extra cheese baked right into the base.",
+      "price": 2.49
+    },
+    {
+      "name": "Inferno Stuffed Crust",
+      "description": "Our traditional crust stuffed with a ring of molten hot cheese. It's devilishly good!",
+      "price": 2.99
+    }
+  ]
+}
