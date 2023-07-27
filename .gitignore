@@ -4,12 +4,14 @@ client/node_modules
 /node_modules
 /.pnp
 .pnp.js
+.struct
+.routeTesting
 
 # testing
 /coverage
 
 # production
-/build
+client/build
 
 # misc
 .DS_Store
