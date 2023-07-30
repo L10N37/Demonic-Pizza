@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SIDES } from '../utils/queries';
+import { sideImages } from '../assets/js';
 
 const SideList = () => {
   const { loading, data } = useQuery(GET_SIDES);
@@ -10,14 +11,13 @@ const SideList = () => {
   const sides = data ? data.sides : [];
 
   return (
-    <div>
-      <h2>Sides</h2>
+    <div className="menuItems">
       {sides.map((side) => (
-        <div key={side._id}>
-          <h3>{side.name}</h3>
+        <div className="menuCard" key={side._id}>
+          <img src={sideImages[side.name]} className="menuItemPicture" alt={side.name} />
+          <h2>{side.name}</h2>
           <p>{side.description}</p>
-          <p> ${side.price}</p>
-          {/* Render other side details */}
+          <p>${side.price}</p>
         </div>
       ))}
     </div>

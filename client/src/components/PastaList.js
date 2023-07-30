@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PASTAS } from '../utils/queries';
+import { pastaImages } from '../assets/js';
 
 const PastaList = () => {
   const { loading, data } = useQuery(GET_PASTAS);
@@ -10,15 +11,14 @@ const PastaList = () => {
   const pastas = data ? data.pastas : [];
 
   return (
-    <div>
-      <h2>Pastas</h2>
+    <div className="menuItems">
       {pastas.map((pasta) => (
-        <div key={pasta._id}>
-          <h3>{pasta.name}</h3>
+        <div className="menuCard" key={pasta._id}>
+          <img src={pastaImages[pasta.name]} className="menuItemPicture" alt={pasta.name} />
+          <h2>{pasta.name}</h2>
           <p>{pasta.ingredients}</p>
           <p>{pasta.description}</p>
           <p>${pasta.price}</p>
-          {/* Render other pasta details */}
         </div>
       ))}
     </div>

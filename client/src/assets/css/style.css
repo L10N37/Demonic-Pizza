@@ -69,3 +69,44 @@ h2 {
     max-width: 100%;
   }
 }
+
+/* MenuCard Styling */
+
+.menuItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 20px;
+  justify-content: center; /* Center the cards horizontally */
+  margin: 0 auto; /* Add this to center the grid in the container */
+  max-width: 1200px; /* Add this to limit the maximum width of the grid */
+}
+
+.menuCard {
+  width: 320px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally */
+}
+
+.menuItemPicture {
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain; /* Ensure the entire image fits within the container */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .menuCard {
+    width: 92%; /* Full width on mobile */
+    padding: 10px; /* Reduce padding on mobile */
+  }
+
+  .menuItemPicture {
+    max-height: 200px; /* Adjust the image height for mobile */
+  }
+}

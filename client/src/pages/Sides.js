@@ -1,13 +1,12 @@
 import React from 'react';
-import SideList from '../components/SideList';
+import PizzaList from '../components/PizzaList';
 
-const Sides = () => {
+const Pizza = () => {
   return (
-    <div>
-      <h1>Sides</h1>
-      <SideList /> {/* sideList component */}
+    <div className="menuCard">
+      <PizzaList /> {/* sideList component */}
     </div>
   );
 };
 
-export default Sides;
+export default Pizza;

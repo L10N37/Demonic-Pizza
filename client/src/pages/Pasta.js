@@ -3,8 +3,7 @@ import PastaList from '../components/PastaList';
 
 const Pasta = () => {
   return (
-    <div>
-      <h1>Pastas</h1>
+    <div className="menuCard">
       <PastaList /> {/* sideList component */}
     </div>
   );
