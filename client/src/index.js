@@ -5,23 +5,19 @@ import { ApolloProvider } from '@apollo/client';
 import ApolloClient from 'apollo-boost';
 import './assets/css/style.css';
 
+// Import CartProvider
+import { CartProvider } from './components/CartContext';
+
 // Instantiate the Apollo Client here
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem('id_token');
-
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : ''
-      }
-    });
-  },
-  uri: '/graphql',
 });
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    {/* Wrap your App with CartProvider */}
+    <CartProvider>
+      <App />
+    </CartProvider>
   </ApolloProvider>,
   document.getElementById('root')
 );

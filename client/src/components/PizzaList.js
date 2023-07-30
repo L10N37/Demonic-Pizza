@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PIZZAS, GET_CRUSTS, GET_EXTRAS } from '../utils/queries';
 
-const PizzaList = () => {
+const PizzaList = ({ addToCart }) => {
   const { loading: pizzaLoading, data: pizzaData } = useQuery(GET_PIZZAS);
   const { loading: crustLoading, data: crustData } = useQuery(GET_CRUSTS);
   const { loading: extraLoading, data: extraData } = useQuery(GET_EXTRAS);
@@ -10,7 +10,6 @@ const PizzaList = () => {
   const [selectedCrusts, setSelectedCrusts] = useState({});
   const [selectedExtras, setSelectedExtras] = useState({});
   const [totalPrices, setTotalPrices] = useState({});
-  const [cart, setCart] = useState([]);
 
   const handleExtraChange = (pizzaId, extraName, isChecked) => {
     setSelectedExtras(prevExtras => {
@@ -40,16 +39,27 @@ const PizzaList = () => {
     });
 
     setTotalPrices(prices);
-  }, [selectedCrusts, selectedExtras]);
+  }, [selectedCrusts, selectedExtras, pizzaData, crustData, extraData]);
 
   const handleAddToCart = (pizza) => {
-    const crust = selectedCrusts[pizza._id] ? crustData.crusts.find(crust => crust.name === selectedCrusts[pizza._id]) : null;
-    const extras = selectedExtras[pizza._id] ? selectedExtras[pizza._id].map(extraName => extraData.extras.find(extra => extra.name === extraName)) : [];
+    const crust = selectedCrusts[pizza._id];
+    const extras = selectedExtras[pizza._id] || [];
+    const totalPrice = totalPrices[pizza._id] || pizza.price;
 
-    // round to 2 decimal places
-    const totalPrice = parseFloat((totalPrices[pizza._id]).toFixed(2));
+    if (!crust) {
+      alert('Please select a crust before adding to cart.');
+      return;
+    }
 
-    setCart(prevCart => [...prevCart, { pizza, crust, extras, totalPrice }]);
+    addToCart({
+      pizza: {
+        id: pizza._id,
+        name: pizza.name,
+      },
+      crust,
+      extras,
+      totalPrice,
+    });
   };
 
   if (pizzaLoading || crustLoading || extraLoading) return <p>Loading...</p>;
@@ -69,13 +79,13 @@ const PizzaList = () => {
           <p className="priceText">${totalPrices[pizza._id] || pizza.price}</p>
 
           <div>
-            <label>Select a crust</label>
-            <select value={selectedCrusts[pizza._id] || ''} onChange={e => setSelectedCrusts({...selectedCrusts, [pizza._id]: e.target.value})}>
+            <label>Select a crust </label>
+            <select value={selectedCrusts[pizza._id] || ''} onChange={e => setSelectedCrusts({ ...selectedCrusts, [pizza._id]: e.target.value })}>
               <option value=''>Select...</option>
               {crusts.map(crust => <option key={crust._id} value={crust.name}>{crust.name} (+${crust.price})</option>)}
             </select>
           </div>
-
+          <br></br>
           <div>
             <label>Select extras</label>
             {extras.map(extra => (

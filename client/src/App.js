@@ -1,5 +1,3 @@
-// Issues with graphql, used apollo browser extension/ run in explorer option to test queries
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -7,6 +5,7 @@ import Home from './pages/Home';
 import Pizza from './pages/Pizza';
 import Pasta from './pages/Pasta';
 import Sides from './pages/Sides';
+import Cart from './pages/Cart'; // Import the Cart component
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -14,14 +13,11 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
     <ApolloProvider client={client}>
-         
-          <div className="logoContainer">
-            <img src={require('./assets/images/logo.png')} alt="Demonic Pizza Business Logo" id="logo-image" />
-          </div>
-
+      <div className="logoContainer">
+        <img src={require('./assets/images/logo.png')} alt="Demonic Pizza Business Logo" id="logo-image" />
+      </div>
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
           <Routes>
@@ -29,8 +25,9 @@ function App() {
             <Route path="/pizza" element={<Pizza />} />
             <Route path="/pasta" element={<Pasta />} />
             <Route path="/sides" element={<Sides />} />
+            {/* Add the route for the Cart component */}
+            <Route path="/cart" element={<Cart />} />
           </Routes>
-          
         </div>
       </Router>
     </ApolloProvider>

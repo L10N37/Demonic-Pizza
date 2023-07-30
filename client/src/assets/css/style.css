@@ -43,10 +43,28 @@ body {
   background-color: #ff0000;
 }
 
+/* Menu Item Name Effect */
+@keyframes gradiusEffect {
+  0% {
+    transform: scale(1);
+    color: #ff0000; /* Start with red color */
+  }
+  50% {
+    transform: scale(1.2);
+    color: #00ff00; /* Change to green color at 50% */
+  }
+  100% {
+    transform: scale(1);
+    color: #ff0000; /* Back to red color at 100% */
+  }
+}
+
 h2 {
   text-align: center;
   margin-top: 20px;
+  animation: gradiusEffect 2s infinite; /* Apply the animation */
 }
+/* ------------------------------------------ */
 
 /* Responsive styles */
 @media screen and (max-width: 1052px) {
