@@ -33,7 +33,10 @@ const PizzaList = () => {
 
       const extrasPrice = extras.reduce((sum, extra) => sum + extra.price, 0);
 
-      prices[key] = pizza.price + (crust ? crust.price : 0) + extrasPrice;
+      // round to 2 decimal places
+      const totalPrice = parseFloat((pizza.price + (crust ? crust.price : 0) + extrasPrice).toFixed(2));
+
+      prices[key] = totalPrice;
     });
 
     setTotalPrices(prices);
@@ -43,7 +46,8 @@ const PizzaList = () => {
     const crust = selectedCrusts[pizza._id] ? crustData.crusts.find(crust => crust.name === selectedCrusts[pizza._id]) : null;
     const extras = selectedExtras[pizza._id] ? selectedExtras[pizza._id].map(extraName => extraData.extras.find(extra => extra.name === extraName)) : [];
 
-    const totalPrice = totalPrices[pizza._id];
+    // round to 2 decimal places
+    const totalPrice = parseFloat((totalPrices[pizza._id]).toFixed(2));
 
     setCart(prevCart => [...prevCart, { pizza, crust, extras, totalPrice }]);
   };
