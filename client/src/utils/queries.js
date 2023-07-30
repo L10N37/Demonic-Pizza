@@ -5,8 +5,10 @@ export const GET_PIZZAS = gql`
     pizzas {
       _id
       name
+      ingredients
       description
       price
+      image
     }
   }
 `;
@@ -16,8 +18,10 @@ export const GET_PASTAS = gql`
     pastas {
       _id
       name
+      ingredients
       description
       price
+      image
     }
   }
 `;
@@ -29,6 +33,7 @@ export const GET_SIDES = gql`
       name
       description
       price
+      image
     }
   }
 `;
