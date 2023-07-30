@@ -3,28 +3,28 @@
     "name": "Demonic Breadsticks",
     "description": "Breadsticks bathed in garlic and butter, sprinkled with the finest cheese from hell.",
     "price": 6.66,
-    "image": "../assets/images/sides/placeholder.png",
+    "image": "../assets/images/sides/side1.png",
     "type": "side"
   },
   {
     "name": "Underworld Wings",
     "description": "Chicken wings marinated in a fiery sauce, smoky and spicy.",
     "price": 8.99,
-    "image": "../assets/images/sides/placeholder.png",
+    "image": "../assets/images/sides/side2.png",
     "type": "side"
   },
   {
     "name": "Coca-Cola",
     "description": "Enjoy the refreshing taste of Coca-Cola.",
     "price": 2.99,
-    "image": "../assets/images/sides/placeholder.png",
+    "image": "../assets/images/sides/side3.png",
     "type": "drink"
   },
   {
     "name": "Diet Coke",
     "description": "Crisp, refreshing, and zero calories, Diet Coke is a guilt-free choice.",
     "price": 2.99,
-    "image": "../assets/images/sides/placeholder.png",
+    "image": "../assets/images/sides/side4.png",
     "type": "drink"
   }
 ]
