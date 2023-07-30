@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -13,9 +12,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-  // globals (you can declare state variables here if needed)
-  let totalPrice = 0;
-  let orderContents = [];
 
   return (
     <ApolloProvider client={client}>

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { ApolloProvider } from '@apollo/client';
 import ApolloClient from 'apollo-boost';
-// import 'bootstrap/dist/css/bootstrap.css';
 import './assets/css/style.css';
 
 // Instantiate the Apollo Client here

@@ -1,0 +1,25 @@
+{
+    "crusts": [
+      {
+        "name": "Default Crust",
+        "description": "A standard, perfectly baked crust that comes with every pizza at no extra cost.",
+        "price": 0
+      },
+      {
+        "name": "Ashen Thin Crust",
+        "description": "A thin, crispy crust blackened to perfection, bringing a taste of the underworld to your pizza.",
+        "price": 1.49
+      },
+      {
+        "name": "Demonic Deep Dish",
+        "description": "A deep dish crust with a sinful amount of extra cheese baked right into the base.",
+        "price": 2.49
+      },
+      {
+        "name": "Inferno Stuffed Crust",
+        "description": "Our traditional crust stuffed with a ring of molten hot cheese. It's devilishly good!",
+        "price": 2.99
+      }
+    ]
+  }
+  

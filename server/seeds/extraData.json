@@ -1,0 +1,30 @@
+{
+    "extras": [
+      {
+        "name": "Inferno Sauce",
+        "description": "Extra hot sauce made with the spiciest peppers in existence. Not for the weak!",
+        "price": 0.99
+      },
+      {
+        "name": "Cursed Chilli Flakes",
+        "description": "Add an extra kick to any pizza with these chili flakes that have been cursed with extreme spiciness.",
+        "price": 0.49
+      },
+      {
+        "name": "Hellish Garlic Butter",
+        "description": "Extra garlic butter that's so good, it's almost sinful.",
+        "price": 0.79
+      },
+      {
+        "name": "Eternal Flame Peppers",
+        "description": "Incredibly hot peppers to add an extra layer of fire to your pizza.",
+        "price": 0.99
+      },
+      {
+        "name": "Satan's Shrooms",
+        "description": "Extra mushrooms marinated in a secret, spicy sauce. Deceptively hot!",
+        "price": 0.89
+      }
+    ]
+  }
+  
