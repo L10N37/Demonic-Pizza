@@ -16,7 +16,7 @@ const PastaList = () => {
         <div key={pasta._id}>
           <h3>{pasta.name}</h3>
           <p>{pasta.description}</p>
-          <p>Price: ${pasta.price}</p>
+          <p>${pasta.price}</p>
           {/* Render other pasta details */}
         </div>
       ))}

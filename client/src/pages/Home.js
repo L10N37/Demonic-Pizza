@@ -1,3 +1,5 @@
+// Home.js
+
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PIZZAS, GET_PASTAS, GET_SIDES } from '../utils/queries';
@@ -17,7 +19,6 @@ const Home = () => {
 
   return (
     <div>
-      <img src="/assets/logo.png" alt="Logo" />
       <PizzaList pizzas={pizzaData.pizzas} />
       <PastaList pastas={pastaData.pastas} />
       <SideList sides={sideData.sides} />

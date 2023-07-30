@@ -1,0 +1,27 @@
+body {
+  background-color: #fff; /* White background color */
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: #333; /* Text color */
+  
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+#logo-image {
+  max-width: 300px; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the image horizontally */
+  display: block; /* Set display to block to remove extra space */
+}
+
+/* Add some spacing between elements */
+h1,
+p {
+  margin: 10px 0;
+}

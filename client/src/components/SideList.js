@@ -16,7 +16,7 @@ const SideList = () => {
         <div key={side._id}>
           <h3>{side.name}</h3>
           <p>{side.description}</p>
-          <p>Price: ${side.price}</p>
+          <p> ${side.price}</p>
           {/* Render other side details */}
         </div>
       ))}

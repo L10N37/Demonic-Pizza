@@ -16,7 +16,7 @@ const PizzaList = () => {
         <div key={pizza._id}>
           <h3>{pizza.name}</h3>
           <p>{pizza.description}</p>
-          <p>Price: ${pizza.price}</p>
+          <p>${pizza.price}</p>
           {/* Render other pizza details */}
         </div>
       ))}
