@@ -1,9 +1,20 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const ExtraSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  price: Number,
+const extraSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('Extra', ExtraSchema);
+const Extra = model('Extra', extraSchema);
+
+module.exports = Extra;

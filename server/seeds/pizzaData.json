@@ -38,7 +38,7 @@
     {
       "name": "Triple Sinner",
       "ingredients": ["Bacon", "Sausage", "Pepperoni"],
-      "description": "This pizza is loaded with three types of meat, making it a favorite among carnivores.",
+      "description": "This pizza is loaded with three types of meat, making it a favourite among carnivores.",
       "price": 17.99,
       "image": "../assets/images/pizzas/pizza6.png"
     },

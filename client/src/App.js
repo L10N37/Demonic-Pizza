@@ -1,3 +1,5 @@
+// Issues with graphql, used apollo browser extension/ run in explorer option to test queries
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';

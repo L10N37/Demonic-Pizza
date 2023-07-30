@@ -13,6 +13,28 @@ export const GET_PIZZAS = gql`
   }
 `;
 
+export const GET_CRUSTS = gql`
+  query {
+    crusts {
+      _id
+      name
+      description
+      price
+    }
+  }
+`;
+
+export const GET_EXTRAS = gql`
+  query {
+    extras {
+      _id
+      name
+      description
+      price
+    }
+  }
+`;
+
 export const GET_PASTAS = gql`
   query {
     pastas {

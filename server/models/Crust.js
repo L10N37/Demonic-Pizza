@@ -1,9 +1,20 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const CrustSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  price: Number,
+const crustSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  description: {
+    type: String,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('Crust', CrustSchema);
+const Crust = model('Crust', crustSchema);
+
+module.exports = Crust;
