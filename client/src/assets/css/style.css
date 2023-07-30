@@ -3,13 +3,17 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 /* Style the logo and button containers */
 .logoContainer {
   text-align: center;
   margin: 20px 0;
+  max-width: 100%; /* Change this to 100% */
+  padding: 0 20px; /* Add padding to separate from buttons */
+  width: 100%; /* Add this to make the container responsive */
+  box-sizing: border-box; /* Add this to include padding in the total width */
 }
 
 .buttonContainer {
@@ -20,31 +24,48 @@ body {
 
 .button {
   display: inline-block;
-  padding: 15px 30px;
-  margin: 0 10px;
-  background-color: black;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #333;
   color: #fff;
   text-decoration: none;
-  border: none;
-  border-radius: 8px;
-  font-size: 20px;
+  border-radius: 5px;
+  font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .button:hover {
+  background-color: #555;
+}
+
+/* Style the active button */
+.active {
   background-color: #ff0000;
 }
 
-.active {
-  background-color: blue;
-}
-
-/* Style the heading */
 h2 {
   text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1052px) {
+  .buttonContainer {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .logoContainer {
+    margin: 10px 0;
+    padding: 0; /* Remove padding on mobile */
+  }
+
+  /* Adjust image size for mobile */
+  #logo-image {
+    max-width: 100%;
+  }
 }
