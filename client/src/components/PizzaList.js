@@ -1,23 +1,15 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_PIZZAS } from '../utils/queries';
 
-const PizzaList = () => {
-  const { loading, data } = useQuery(GET_PIZZAS);
-
-  if (loading) return <p>Loading...</p>;
-
-  const pizzas = data ? data.pizzas : [];
-
+const PizzaList = ({ pizzas }) => {
   return (
     <div>
-      <h2>Pizzas</h2>
       {pizzas.map((pizza) => (
         <div key={pizza._id}>
-          <h3>{pizza.name}</h3>
+          <h2>{pizza.name}</h2>
+          <p>{pizza.ingredients}</p>
           <p>{pizza.description}</p>
           <p>${pizza.price}</p>
-          {/* Render other pizza details */}
+          <img src={pizza.image} alt={pizza.name} />
         </div>
       ))}
     </div>

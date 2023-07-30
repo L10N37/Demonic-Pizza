@@ -15,6 +15,7 @@ const PastaList = () => {
       {pastas.map((pasta) => (
         <div key={pasta._id}>
           <h3>{pasta.name}</h3>
+          <p>{pasta.ingredients}</p>
           <p>{pasta.description}</p>
           <p>${pasta.price}</p>
           {/* Render other pasta details */}

@@ -1,7 +1,6 @@
 // App.js
-
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Pizza from './pages/Pizza';
@@ -22,15 +21,17 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="flex-column justify-center align-center min-100-vh bg-primary">
-        <div class = "logoContainer"> 
-        <img src={require('./assets/images/logo.png')} alt="Demonic Pizza Business Logo" id = "logo-image" />
-        </div>
+          <div className="logoContainer">
+            <img src={require('./assets/images/logo.png')} alt="Demonic Pizza Business Logo" id="logo-image" />
+          </div>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/pizza" element={<Pizza />} />
             <Route path="/pasta" element={<Pasta />} />
             <Route path="/sides" element={<Sides />} />
           </Routes>
+          
         </div>
       </Router>
     </ApolloProvider>

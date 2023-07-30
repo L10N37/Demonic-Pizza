@@ -1,27 +1,50 @@
+/* Add general styles */
 body {
-  background-color: #fff; /* White background color */
   margin: 0;
   padding: 0;
-  font-family: 'Arial', sans-serif;
-  color: #333; /* Text color */
-  
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
 }
 
-.container {
+/* Style the logo and button containers */
+.logoContainer {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.buttonContainer {
   display: flex;
   justify-content: center;
-  min-height: 100vh;
-  background-color: #fff;
+  margin-bottom: 20px;
 }
 
-#logo-image {
-  max-width: 300px; /* Adjust the width as needed */
-  margin: 0 auto; /* Center the image horizontally */
-  display: block; /* Set display to block to remove extra space */
+.button {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 0 10px;
+  background-color: black;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Add some spacing between elements */
-h1,
-p {
-  margin: 10px 0;
+.button:hover {
+  background-color: #ff0000;
+}
+
+.active {
+  background-color: blue;
+}
+
+/* Style the heading */
+h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
