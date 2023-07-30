@@ -1,23 +1,65 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_MATCHUP = gql`
-  mutation createMatchup($tech1: String!, $tech2: String!) {
-    createMatchup(tech1: $tech1, tech2: $tech2) {
+export const CREATE_ORDER = gql`
+  mutation createOrder($userId: ID!) {
+    createOrder(userId: $userId) {
       _id
-      tech1
-      tech2
+      user {
+        _id
+        username
+      }
+      items {
+        _id
+        name
+        quantity
+        price
+      }
+      total
     }
   }
 `;
 
-export const CREATE_VOTE = gql`
-  mutation createVote($_id: String!, $techNum: Int!) {
-    createVote(_id: $_id, techNum: $techNum) {
+export const ADD_ITEM_TO_ORDER = gql`
+  mutation addItemToOrder($orderId: ID!, $itemId: ID!, $quantity: Int!) {
+    addItemToOrder(orderId: $orderId, itemId: $itemId, quantity: $quantity) {
       _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+      items {
+        _id
+        name
+        quantity
+        price
+      }
+      total
+    }
+  }
+`;
+
+export const REMOVE_ITEM_FROM_ORDER = gql`
+  mutation removeItemFromOrder($orderId: ID!, $itemId: ID!) {
+    removeItemFromOrder(orderId: $orderId, itemId: $itemId) {
+      _id
+      items {
+        _id
+        name
+        quantity
+        price
+      }
+      total
+    }
+  }
+`;
+
+export const UPDATE_ITEM_QUANTITY = gql`
+  mutation updateItemQuantity($orderId: ID!, $itemId: ID!, $quantity: Int!) {
+    updateItemQuantity(orderId: $orderId, itemId: $itemId, quantity: $quantity) {
+      _id
+      items {
+        _id
+        name
+        quantity
+        price
+      }
+      total
     }
   }
 `;

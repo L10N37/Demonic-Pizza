@@ -17,6 +17,12 @@ const pizzaSchema = new Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  
 });
 
 const Pizza = model('Pizza', pizzaSchema);

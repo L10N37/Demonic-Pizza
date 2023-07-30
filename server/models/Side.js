@@ -14,6 +14,16 @@ const sideSchema = new Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  type: {
+    type: String,
+    enum: ['side', 'drink'],
+    required: true,
+  },
 });
 
 const Side = model('Side', sideSchema);

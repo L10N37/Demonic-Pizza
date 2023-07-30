@@ -17,6 +17,11 @@ const pastaSchema = new Schema({
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+    trim: true,
+  }
 });
 
 const Pasta = model('Pasta', pastaSchema);

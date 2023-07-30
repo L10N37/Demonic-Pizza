@@ -1,22 +1,34 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_TECH = gql`
-  query tech {
-    tech {
+export const GET_PIZZAS = gql`
+  query {
+    pizzas {
       _id
       name
+      description
+      price
     }
   }
 `;
 
-export const QUERY_MATCHUPS = gql`
-  query matchups($_id: String) {
-    matchups(_id: $_id) {
+export const GET_PASTAS = gql`
+  query {
+    pastas {
       _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+      name
+      description
+      price
+    }
+  }
+`;
+
+export const GET_SIDES = gql`
+  query {
+    sides {
+      _id
+      name
+      description
+      price
     }
   }
 `;
