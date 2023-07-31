@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import '../assets/css/SignInPage.css';                      // Styling
 import { useStoreContext } from '../contexts/CartContext';
-import '../assets/css/SignInPage.css';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_MUTATION, LOGIN_MUTATION } from '../utils/mutations';
 import SignInForm from '../forms/signInForm';
@@ -11,8 +11,8 @@ const Cart = () => {
   const [showSignUp, setShowSignUp] = useState(false);
   const [state, dispatch] = useStoreContext();
   const { cart } = state;
-  
-  const [signInData, setSignInData] = useState({ email: '', password: '' });  // New state
+
+  const [signInData, setSignInData] = useState({ email: '', password: '' });
   const [signUpData, setSignUpData] = useState({ 
     firstName: '', 
     lastName: '', 
@@ -20,29 +20,42 @@ const Cart = () => {
     address: { street: '', suburb: '', city: '', state: '', postcode: '' }, 
     mobile: '', 
     password: '' 
-  });  // New state
+  });
 
   const [addUser] = useMutation(SIGNUP_MUTATION);
   const [loginUser] = useMutation(LOGIN_MUTATION);
 
-  const handleSignInChange = (event) => {  // New method
+  const handleSignInChange = (event) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSignUpChange = (event) => {  // New method
-    setSignUpData({
-      ...signUpData,
-      [event.target.name]: event.target.value,
-    });
+  const handleSignUpChange = (event) => {
+    const { name, value } = event.target;
+    if (name.startsWith('address.')) {
+      const addressField = name.split('.')[1];
+      setSignUpData((prevSignUpData) => ({
+        ...prevSignUpData,
+        address: {
+          ...prevSignUpData.address,
+          [addressField]: value,
+        },
+      }));
+    } else {
+      setSignUpData((prevSignUpData) => ({
+        ...prevSignUpData,
+        [name]: value,
+      }));
+    }
   };
-
+  
   const handleSignUp = async (data) => {
     try {
       await addUser({ variables: { ...data, address: { ...data.address } } });
       localStorage.setItem('isSignedIn', 'true');
+      // setIsSignedIn(true); // This line should be removed or set appropriately
     } catch (err) {
       console.error(err);
     }
@@ -52,6 +65,7 @@ const Cart = () => {
     try {
       await loginUser({ variables: { ...data } });
       localStorage.setItem('isSignedIn', 'true');
+      // setIsSignedIn(true); // This line should be removed or set appropriately
     } catch (err) {
       console.error(err);
     }
@@ -60,35 +74,59 @@ const Cart = () => {
   const handleSignOut = () => {
     dispatch({ type: 'CLEAR_CART' });
     localStorage.removeItem('isSignedIn');
+    // setIsSignedIn(false); // This line should be removed or set appropriately
   };
 
-  const isSignedInLocalStorage = localStorage.getItem('isSignedIn');
-  const [isSignedIn, setIsSignedIn] = useState(!!isSignedInLocalStorage);
+  const [isSignedIn, setIsSignedIn] = useState(false); // Initialize isSignedIn as false
 
   const totalCartPrice = cart.reduce((total, cartItem) => total + cartItem.totalPrice, 0);
   const totalCartPriceWithDelivery = isDelivery ? totalCartPrice + 12.99 : totalCartPrice;
+
+  useEffect(() => {
+    const isSignedInLocalStorage = localStorage.getItem('isSignedIn');
+    setIsSignedIn(!!isSignedInLocalStorage);
+  }, []);
 
   return (
     <div className="signInContainer">
       {isSignedIn && cart.length > 0 && (
         <div>
           <h2>Cart Contents</h2>
-          {/* ...your table code here... */}
-          <tr>
-            <td>
-              <label htmlFor="delivery">
-                <input 
-                  type="checkbox"
-                  id="delivery"
-                  checked={isDelivery}
-                  onChange={() => setDelivery(prevDelivery => !prevDelivery)}
-                />
-                Add delivery for 12.99
-              </label>
-            </td>
-            <td>Total Price:</td>
-            <td>${totalCartPriceWithDelivery.toFixed(2)}</td>
-          </tr>
+          <table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.name}</td>
+                  <td>{item.quantity}</td>
+                  <td>${item.price.toFixed(2)}</td>
+                  <td>${item.totalPrice.toFixed(2)}</td>
+                </tr>
+              ))}
+              <tr>
+                <td>
+                  <label htmlFor="delivery">
+                    <input 
+                      type="checkbox"
+                      id="delivery"
+                      checked={isDelivery}
+                      onChange={() => setDelivery(prevDelivery => !prevDelivery)}
+                    />
+                    Add delivery for 12.99
+                  </label>
+                </td>
+                <td>Total Price:</td>
+                <td>${totalCartPriceWithDelivery.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
 
@@ -107,6 +145,7 @@ const Cart = () => {
           handleSignUpChange={handleSignUpChange}
           handleSignUp={handleSignUp} 
           setShowSignUp={setShowSignUp} 
+          isSignedIn={isSignedIn} // Pass isSignedIn to SignUpForm
         />
       )}
 

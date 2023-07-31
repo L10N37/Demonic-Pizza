@@ -1,60 +1,167 @@
 import React from 'react';
 
-const SignUpForm = ({signUpData, handleSignUpChange, handleSignUp, setShowSignUp}) => (
-  <form onSubmit={handleSignUp} className="signUpForm">
-    <table>
-      <tbody>
-        <tr>
-          <td><label>First Name:</label></td>
-          <td><input type="text" name="firstName" className="inputField" value={signUpData.firstName} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Last Name:</label></td>
-          <td><input type="text" name="lastName" className="inputField" value={signUpData.lastName} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Email:</label></td>
-          <td><input type="email" name="email" className="inputField" value={signUpData.email} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Street:</label></td>
-          <td><input type="text" name="street" className="inputField" value={signUpData.address.street} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Suburb:</label></td>
-          <td><input type="text" name="suburb" className="inputField" value={signUpData.address.suburb} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>City:</label></td>
-          <td><input type="text" name="city" className="inputField" value={signUpData.address.city} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>State:</label></td>
-          <td><input type="text" name="state" className="inputField" value={signUpData.address.state} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Postcode:</label></td>
-          <td><input type="text" name="postcode" className="inputField" value={signUpData.address.postcode} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Mobile:</label></td>
-          <td><input type="tel" name="mobile" className="inputField" value={signUpData.mobile} onChange={handleSignUpChange} required /></td>
-        </tr>
-        <tr>
-          <td><label>Password:</label></td>
-          <td><input type="password" name="password" className="inputField" value={signUpData.password} onChange={handleSignUpChange} required /></td>
-        </tr>
-      </tbody>
-    </table>
-    <button type="submit" className="signUpButton">Sign Up</button>
-    <button
-      type="button"
-      className="signInSwitch"
-      onClick={() => setShowSignUp(false)}
-    >
-      Switch to Sign In
-    </button>
-  </form>
-);
+const SignUpForm = ({ signUpData, handleSignUpChange, handleSignUp }) => {
+  return (
+    <form className="signUpForm">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <label htmlFor="firstName">First Name:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={signUpData.firstName}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="lastName">Last Name:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={signUpData.lastName}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="email">Email:</label>
+            </td>
+            <td>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={signUpData.email}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="mobile">Mobile:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="mobile"
+                name="mobile"
+                value={signUpData.mobile}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="street">Street:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="street"
+                name="address.street"
+                value={signUpData.address.street}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="suburb">Suburb:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="suburb"
+                name="address.suburb"
+                value={signUpData.address.suburb}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="city">City:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="city"
+                name="address.city"
+                value={signUpData.address.city}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="state">State:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="state"
+                name="address.state"
+                value={signUpData.address.state}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="postcode">Postcode:</label>
+            </td>
+            <td>
+              <input
+                type="text"
+                id="postcode"
+                name="address.postcode"
+                value={signUpData.address.postcode}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label htmlFor="password">Password:</label>
+            </td>
+            <td>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={signUpData.password}
+                onChange={handleSignUpChange}
+                className="inputField"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" onClick={() => handleSignUp(signUpData)} className="signUpButton">
+        Sign Up
+      </button>
+    </form>
+  );
+};
 
 export default SignUpForm;
