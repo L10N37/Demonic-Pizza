@@ -4,7 +4,7 @@ import PastaList from '../components/PastaList';
 const Pasta = () => {
   return (
     <div className="menuCard">
-      <PastaList /> {/* sideList component */}
+      <PastaList /> {/* Use the PastaList component */}
     </div>
   );
 };

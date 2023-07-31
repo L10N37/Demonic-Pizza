@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import Pizza from './pages/Pizza';
 import Pasta from './pages/Pasta';
 import Sides from './pages/Sides';
-import Cart from './pages/Cart'; // Import the Cart component
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -25,8 +24,6 @@ function App() {
             <Route path="/pizza" element={<Pizza />} />
             <Route path="/pasta" element={<Pasta />} />
             <Route path="/sides" element={<Sides />} />
-            {/* Add the route for the Cart component */}
-            <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
       </Router>

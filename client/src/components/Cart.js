@@ -1,30 +1,43 @@
 import React, { useContext } from 'react';
-import { CartContext } from './CartContext';
+import { CartContext } from '../contexts/CartContext';
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
 
-  const calculateTotalPrice = () => {
-    return cart.reduce((sum, item) => sum + item.totalPrice, 0);
-  };
+  // Calculate the total price for all items in the cart
+  const totalCartPrice = cart.reduce((total, cartItem) => total + cartItem.totalPrice, 0);
 
   return (
-    <div className="cartContainer">
-      <h2>Cart</h2>
+    <div>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div>
-          {cart.map((item) => (
-            <div key={item.pizza.id} className="cartItem">
-              <p>{item.pizza.name}</p>
-              <p>Crust: {item.crust}</p>
-              <p>Extras: {item.extras.join(', ')}</p>
-              <p>Price: ${item.totalPrice.toFixed(2)}</p>
-            </div>
-          ))}
-          <hr />
-          <p>Total: ${calculateTotalPrice().toFixed(2)}</p>
+          <ul>
+            {cart.map((cartItem, index) => (
+              <li key={index}>
+                {cartItem.pizza && (
+                  <div>
+                    <p>Pizza: {cartItem.pizza.name}</p>
+                    <p>Crust: {cartItem.crust}</p>
+                    <p>Extras: {cartItem.extras.join(', ')}</p>
+                  </div>
+                )}
+                {cartItem.pasta && (
+                  <div>
+                    <p>Pasta: {cartItem.pasta.name}</p>
+                  </div>
+                )}
+                {cartItem.side && (
+                  <div>
+                    <p>Side: {cartItem.side.name}</p>
+                  </div>
+                )}
+                <p>${cartItem.totalPrice.toFixed(2)}</p>
+              </li>
+            ))}
+          </ul>
+          <p>Total Price: ${totalCartPrice.toFixed(2)}</p>
         </div>
       )}
     </div>

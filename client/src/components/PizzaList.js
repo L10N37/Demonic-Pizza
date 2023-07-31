@@ -12,12 +12,15 @@ const PizzaList = ({ addToCart }) => {
   const [totalPrices, setTotalPrices] = useState({});
 
   const handleExtraChange = (pizzaId, extraName, isChecked) => {
-    setSelectedExtras(prevExtras => {
+    setSelectedExtras((prevExtras) => {
       const previousExtrasForPizza = prevExtras[pizzaId] || [];
       if (isChecked) {
         return { ...prevExtras, [pizzaId]: [...previousExtrasForPizza, extraName] };
       } else {
-        return { ...prevExtras, [pizzaId]: previousExtrasForPizza.filter(extra => extra !== extraName) };
+        return {
+          ...prevExtras,
+          [pizzaId]: previousExtrasForPizza.filter((extra) => extra !== extraName),
+        };
       }
     });
   };
@@ -25,15 +28,21 @@ const PizzaList = ({ addToCart }) => {
   useEffect(() => {
     const prices = {};
 
-    Object.keys(selectedCrusts).forEach(key => {
-      const pizza = pizzaData.pizzas.find(pizza => pizza._id === key);
-      const crust = crustData.crusts.find(crust => crust.name === selectedCrusts[key]);
-      const extras = selectedExtras[key] ? selectedExtras[key].map(extraName => extraData.extras.find(extra => extra.name === extraName)) : [];
+    Object.keys(selectedCrusts).forEach((key) => {
+      const pizza = pizzaData.pizzas.find((pizza) => pizza._id === key);
+      const crust = crustData.crusts.find((crust) => crust.name === selectedCrusts[key]);
+      const extras = selectedExtras[key]
+        ? selectedExtras[key].map((extraName) =>
+            extraData.extras.find((extra) => extra.name === extraName)
+          )
+        : [];
 
       const extrasPrice = extras.reduce((sum, extra) => sum + extra.price, 0);
 
       // round to 2 decimal places
-      const totalPrice = parseFloat((pizza.price + (crust ? crust.price : 0) + extrasPrice).toFixed(2));
+      const totalPrice = parseFloat(
+        (pizza.price + (crust ? crust.price : 0) + extrasPrice).toFixed(2)
+      );
 
       prices[key] = totalPrice;
     });
@@ -80,21 +89,28 @@ const PizzaList = ({ addToCart }) => {
 
           <div>
             <label>Select a crust </label>
-            <select value={selectedCrusts[pizza._id] || ''} onChange={e => setSelectedCrusts({ ...selectedCrusts, [pizza._id]: e.target.value })}>
-              <option value=''>Select...</option>
-              {crusts.map(crust => <option key={crust._id} value={crust.name}>{crust.name} (+${crust.price})</option>)}
+            <select
+              value={selectedCrusts[pizza._id] || ''}
+              onChange={(e) => setSelectedCrusts({ ...selectedCrusts, [pizza._id]: e.target.value })}
+            >
+              <option value="">Select...</option>
+              {crusts.map((crust) => (
+                <option key={crust._id} value={crust.name}>
+                  {crust.name} (+${crust.price})
+                </option>
+              ))}
             </select>
           </div>
-          <br></br>
+          <br />
           <div>
             <label>Select extras</label>
-            {extras.map(extra => (
+            {extras.map((extra) => (
               <div key={extra._id}>
                 <label>
                   <input
                     type="checkbox"
                     checked={selectedExtras[pizza._id] ? selectedExtras[pizza._id].includes(extra.name) : false}
-                    onChange={e => handleExtraChange(pizza._id, extra.name, e.target.checked)}
+                    onChange={(e) => handleExtraChange(pizza._id, extra.name, e.target.checked)}
                   />
                   {extra.name} (+${extra.price})
                 </label>

@@ -6,7 +6,7 @@ import ApolloClient from 'apollo-boost';
 import './assets/css/style.css';
 
 // Import CartProvider
-import { CartProvider } from './components/CartContext';
+import { CartProvider } from './contexts/CartContext';
 
 // Instantiate the Apollo Client here
 const client = new ApolloClient({

@@ -5,8 +5,7 @@ import PizzaList from '../components/PizzaList';
 import PastaList from '../components/PastaList';
 import SideList from '../components/SideList';
 import Cart from '../components/Cart';
-import { CartContext } from '../components/CartContext'; // Import CartContext
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { CartContext } from '../contexts/CartContext';
 
 const Home = () => {
   const [activeCategory, setActiveCategory] = useState('Pizza');
@@ -17,22 +16,39 @@ const Home = () => {
   const [cart, setCart] = useState([]); // Local state for cart items
 
   const addToCart = (item) => {
-    setCart(prevCart => [...prevCart, item]);
+    setCart((prevCart) => [...prevCart, item]);
   };
 
   if (pizzaLoading || pastaLoading || sideLoading) return <p>Loading...</p>;
 
   if (!pizzaData || !pastaData || !sideData) return <p>Error loading data</p>;
 
+  // Helper function to calculate pizza price with crust and extras
+  const calculatePizzaPrice = (pizza) => {
+    const crustPrice = pizza.crust ? pizza.crust.price || 0 : 0;
+    const extrasPrice = pizza.extras ? pizza.extras.reduce((total, extra) => total + (extra.price || 0), 0) : 0;
+    return pizza.price + crustPrice + extrasPrice;
+  };
+
   let activeContent;
   if (activeCategory === 'Pizza') {
-    activeContent = <PizzaList pizzas={pizzaData.pizzas} addToCart={addToCart} />;
+    activeContent = (
+      <PizzaList
+        pizzas={pizzaData.pizzas.map((pizza) => ({
+          ...pizza,
+          price: calculatePizzaPrice(pizza),
+        }))}
+        addToCart={addToCart}
+      />
+    );
   } else if (activeCategory === 'Pasta') {
     activeContent = <PastaList pastas={pastaData.pastas} addToCart={addToCart} />;
   } else if (activeCategory === 'Sides') {
     activeContent = <SideList sides={sideData.sides} addToCart={addToCart} />;
+  } else if (activeCategory === 'Cart') {
+    activeContent = <Cart />;
   }
- 
+
   return (
     <CartContext.Provider value={{ cart, addToCart }}>
       <div>
@@ -56,14 +72,13 @@ const Home = () => {
             Sides
           </button>
           <button
-            onClick={() => setActiveCategory('Cart')} // Use 'Cart' as the category to show cart content
+            onClick={() => setActiveCategory('Cart')}
             className={`button ${activeCategory === 'Cart' ? 'active' : ''}`}
           >
             Cart
           </button>
         </div>
-        {/* Show the Cart component based on the activeCategory */}
-        {activeCategory === 'Cart' ? <Cart /> : activeContent}
+        {activeContent}
       </div>
     </CartContext.Provider>
   );
