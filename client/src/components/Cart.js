@@ -4,40 +4,40 @@ import { CartContext } from '../contexts/CartContext';
 const Cart = () => {
   const { cart } = useContext(CartContext);
 
-  // Calculate the total price for all items in the cart
   const totalCartPrice = cart.reduce((total, cartItem) => total + cartItem.totalPrice, 0);
 
   return (
     <div>
       {cart.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p id = "cartEmptyText">Your cart is empty.</p>
       ) : (
         <div>
-          <ul>
-            {cart.map((cartItem, index) => (
-              <li key={index}>
-                {cartItem.pizza && (
-                  <div>
-                    <p>Pizza: {cartItem.pizza.name}</p>
-                    <p>Crust: {cartItem.crust}</p>
-                    <p>Extras: {cartItem.extras.join(', ')}</p>
-                  </div>
-                )}
-                {cartItem.pasta && (
-                  <div>
-                    <p>Pasta: {cartItem.pasta.name}</p>
-                  </div>
-                )}
-                {cartItem.side && (
-                  <div>
-                    <p>Side: {cartItem.side.name}</p>
-                  </div>
-                )}
-                <p>${cartItem.totalPrice.toFixed(2)}</p>
-              </li>
-            ))}
-          </ul>
-          <p>Total Price: ${totalCartPrice.toFixed(2)}</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Crust</th>
+                <th>Extras</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((cartItem, index) => (
+                <tr key={index}>
+                  <td>{cartItem.pizza ? ` ${cartItem.pizza.name}` : cartItem.pasta ? `Pasta: ${cartItem.pasta.name}` : ` ${cartItem.side.name}`}</td>
+                  <td>{cartItem.pizza ? cartItem.crust : ''}</td>
+                  <td>{cartItem.pizza ? cartItem.extras.join(', ') : ''}</td>
+                  <td>${cartItem.totalPrice.toFixed(2)}</td>
+                </tr>
+              ))}
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Total Price:</td>
+                <td>${totalCartPrice.toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
     </div>

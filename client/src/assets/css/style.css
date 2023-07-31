@@ -117,10 +117,6 @@ h2 {
   flex-direction: column;
   align-items: center; /* Center the content horizontally */
   position: relative;
-  background-color: #222; /* Dark background color for menu items */
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.3);
-  /* Add a cool shadowy effect with two shadows: one for the border and one for the depth */
 }
 
 .menuItemPicture {
@@ -169,4 +165,40 @@ h2 {
   .menuItemPicture {
     max-height: 200px; /* Adjust the image height for mobile */
   }
+}
+
+#emptyCartText{
+font-size:30px;
+}
+
+/* Cart Styling*/
+#cartEmptyText{
+background-color:   black;
+justify-content: center;
+display:flex;
+font-size:30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead {
+  background-color: black;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: black;
+}
+
+td:last-child, th:last-child {
+  text-align: right;
 }
