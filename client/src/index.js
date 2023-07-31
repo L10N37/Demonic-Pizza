@@ -10,14 +10,14 @@ import { CartProvider } from './contexts/CartContext';
 
 // Instantiate the Apollo Client here
 const client = new ApolloClient({
+  uri: '/graphql',
 });
 
 ReactDOM.render(
+  <CartProvider>
   <ApolloProvider client={client}>
-    {/* Wrap your App with CartProvider */}
-    <CartProvider>
       <App />
-    </CartProvider>
-  </ApolloProvider>,
+  </ApolloProvider>
+  </CartProvider>,
   document.getElementById('root')
 );

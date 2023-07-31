@@ -12,6 +12,7 @@
 .signInForm td,
 .signUpForm td {
     padding: 5px;
+    text-align: right;
 }
 
 .signInForm label,
@@ -43,6 +44,7 @@
     max-width: 1000px; /* restrict to max-width */
     margin: 0 auto; /* center the form */
     padding: 20px; /* some spacing around the form */
+    text-align: center;
 }
 
 .signInTitle {
@@ -105,3 +107,20 @@
         padding: 10px;
     }
 }
+
+#signOutButton {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  #signOutButton:hover {
+    background-color: #d70000; /* Slightly darker red on hover */
+  }
+  

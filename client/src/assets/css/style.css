@@ -169,6 +169,9 @@ h2 {
 
 #emptyCartText{
 font-size:30px;
+background: black;
+justify-content: center;
+display:flex;
 }
 
 /* Cart / Checkout Styling*/

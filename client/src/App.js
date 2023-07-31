@@ -6,7 +6,6 @@ import Pizza from './pages/Pizza';
 import Pasta from './pages/Pasta';
 import Sides from './pages/Sides';
 import Checkout from './pages/Checkout';
-import SignIn from './pages/SignIn';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -27,7 +26,6 @@ function App() {
             <Route path="/pasta" element={<Pasta />} />
             <Route path="/sides" element={<Sides />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/signin" element={<SignIn />} />
           </Routes>
         </div>
       </Router>

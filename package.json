@@ -20,6 +20,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.17",
+    "graphql": "^16.7.1",
     "jsonwebtoken": "latest",
     "webpack": "^4.46.0"
   }
