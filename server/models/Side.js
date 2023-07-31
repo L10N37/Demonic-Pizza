@@ -21,7 +21,7 @@ const sideSchema = new Schema({
   },
   type: {
     type: String,
-    enum: ['side', 'drink'],
+    enum: ['side', 'drink', 'dessert'],
     required: true,
   },
 });

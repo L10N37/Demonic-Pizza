@@ -1,17 +1,23 @@
 [
-    {
+  {
       "name": "Lucifer's Lasagna",
       "ingredients": ["Bolognese Sauce", "Parmesan", "Ricotta", "Mozzarella"],
       "description": "Layers of pasta and cheese, with a devilishly delicious Bolognese sauce.",
       "price": 13.99,
       "image": "../assets/images/pastas/pasta1.png"
-    },
-    {
+  },
+  {
       "name": "Beelzebub's Bucatini",
       "ingredients": ["Tomato Sauce", "Garlic", "Basil", "Parmesan"],
       "description": "A classic pasta dish with a fiery twist. A favorite of Beelzebub himself.",
       "price": 12.99,
       "image": "../assets/images/pastas/pasta2.png"
-    }
-  ]
-  
+  },
+  {
+      "name": "Devil's Delight",
+      "ingredients": ["Spicy Tomato Sauce", "Chilli Flakes", "Basil", "Parmesan"],
+      "description": "A devilishly spicy pasta, not for the faint-hearted!",
+      "price": 14.99,
+      "image": "../assets/images/pastas/pasta3.png"
+  }
+]

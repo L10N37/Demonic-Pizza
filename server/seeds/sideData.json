@@ -26,5 +26,40 @@
     "price": 2.99,
     "image": "../assets/images/sides/side4.png",
     "type": "drink"
+  },
+  {
+    "name": "Forbidden Fruit",
+    "description": "An enchanted apple pie, a taste so divine, it must be forbidden.",
+    "price": 5.99,
+    "image": "../assets/images/sides/side5.png",
+    "type": "dessert"
+  },
+  {
+    "name": "Hellfire Hot Chocolate",
+    "description": "A decadently rich hot chocolate with a fiery hint of chilli.",
+    "price": 4.99,
+    "image": "../assets/images/sides/side6.png",
+    "type": "drink"
+  },
+  {
+    "name": "Satan's Sundae",
+    "description": "A devilishly good sundae, layered with dark chocolate and chili-infused cherries.",
+    "price": 7.99,
+    "image": "../assets/images/sides/side7.png",
+    "type": "dessert"
+  },
+  {
+    "name": "Eternal Damnation Donuts",
+    "description": "Deep-fried donuts glazed with a sinfully sweet cinnamon and sugar coating.",
+    "price": 5.99,
+    "image": "../assets/images/sides/side8.png",
+    "type": "dessert"
+  },
+  {
+    "name": "Purgatory Pudding",
+    "description": "A heavenly bread pudding with a dark, caramel drizzle.",
+    "price": 6.99,
+    "image": "../assets/images/sides/side9.png",
+    "type": "dessert"
   }
 ]
