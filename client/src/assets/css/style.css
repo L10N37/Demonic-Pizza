@@ -171,7 +171,7 @@ h2 {
 font-size:30px;
 }
 
-/* Cart Styling*/
+/* Cart / Checkout Styling*/
 #cartEmptyText{
 background-color:   black;
 justify-content: center;
@@ -201,4 +201,41 @@ tr:nth-child(even) {
 
 td:last-child, th:last-child {
   text-align: right;
+}
+
+.checkout-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.checkout-btn {
+  background-color: white;
+  border: none; 
+  color: red;
+  font-style: bold;
+  padding: 15px 32px; /* Increase button size */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px; /* Optional: add border radius */
+}
+
+.login-btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-btn {
+  background-color: whitesmoke; /* Change background color */
+  border: none;
+  color: black; /* Text color */
+  padding: 15px 32px; /* Increase button size */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px; /* Optional: add border radius */
 }
