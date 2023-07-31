@@ -19,7 +19,11 @@ const userSchema = new Schema({
       validator: validator.isEmail,
       message: 'Invalid email format',
       isAsync: false
-    }
+    },
+  },
+  mobile: {
+    type: String, // Changed to String as phone numbers can contain non-digit characters
+    required: true,
   },
   address: {
     street: {
@@ -38,10 +42,6 @@ const userSchema = new Schema({
       type: String,
       required: true,
     },
-    country: {
-      type: String,
-      required: true,
-    }
   },
   password: {
     type: String,

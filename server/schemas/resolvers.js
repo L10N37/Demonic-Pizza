@@ -58,8 +58,8 @@ const resolvers = {
     createCrust: async (parent, { name, description, price }) => {
       return await Crust.create({ name, description, price });
     },
-    addUser: async (parent, { firstName, lastName, email, address, password }) => {
-      const user = await User.create({ firstName, lastName, email, address, password });
+    addUser: async (parent, { firstName, lastName, email, address, password, mobile }) => {
+      const user = await User.create({ firstName, lastName, email, address, password, mobile });
 
       if (!user) {
         throw new Error('Something went wrong!');

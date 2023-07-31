@@ -57,6 +57,7 @@ const typeDefs = gql`
     firstName: String!
     lastName: String!
     email: String!
+    mobile: String!
     address: Address!
     orders: [Order]
   }
@@ -94,7 +95,7 @@ const typeDefs = gql`
     createSide(name: String!, description: String!, price: Float!): Side
     createExtra(name: String!, description: String!, price: Float!): Extra
     createCrust(name: String!, description: String!, price: Float!): Crust
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!, address: AddressInput): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, mobile: String!, password: String!, address: AddressInput): Auth
     login(email: String!, password: String!): Auth
     createOrder(userId: ID!): Order
     addItemToOrder(orderId: ID!, itemId: ID!, quantity: Int!): Order

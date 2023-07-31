@@ -1,0 +1,107 @@
+.signInForm table,
+.signUpForm table {
+    width: 100%;
+    max-width: 600px; /* You can adjust this value */
+    padding: 20px;
+    background-color: #333; /* Dark grey background color */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto; /* To center tables */
+}
+
+.signInForm td,
+.signUpForm td {
+    padding: 5px;
+}
+
+.signInForm label,
+.signUpForm label {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+    margin-right: 10px;
+    color: #ddd; /* Light grey color for text */
+}
+
+.signInForm input,
+.signUpForm input {
+    width: 100%; /* Full width of the table cell */
+    box-sizing: border-box; /* To include padding and border in element's total width */
+}
+
+/* Media query for desktop devices */
+@media screen and (min-width: 992px) {
+    .signInForm table,
+    .signUpForm table {
+        width: 50%; /* Takes up 50% of the width */
+    }
+}
+
+/* CSS for SignIn.js */
+.signInContainer {
+    width: 92%;
+    max-width: 1000px; /* restrict to max-width */
+    margin: 0 auto; /* center the form */
+    padding: 20px; /* some spacing around the form */
+}
+
+.signInTitle {
+    color: #fff; /* light text color */
+    text-align: center;
+    margin-bottom: 20px; /* some space after the title */
+}
+
+.signInForm, .signUpForm {
+    width: 92%;
+    max-width: 100%; /* restrict to max-width */
+    margin: 0 auto; /* center the form */
+}
+
+.inputField {
+    width: 92%;
+    padding: 10px;
+    margin: 10px 0; /* some vertical spacing between inputs */
+    box-sizing: border-box;
+}
+
+.signInButton, .signUpButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #800000; /* Dark red button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.signInButton:hover, .signUpButton:hover {
+    background-color: #b30000; /* Slightly lighter red on hover */
+}
+
+.signUpSwitch, .signInSwitch {
+    width: 100%;
+    padding: 10px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.signUpSwitch:hover, .signInSwitch:hover {
+    background-color: #444;
+}
+
+@media screen and (max-width: 768px) {
+    .signInContainer {
+        padding: 10px;
+    }
+}

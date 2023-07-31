@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';  // add this import
 
 const Cart = () => {
   const { cart } = useContext(CartContext);
+  const navigate = useNavigate();  // call the useNavigate hook here
   const [delivery, setDelivery] = useState(false);
   const deliveryFee = 12.99;
 
@@ -17,8 +19,8 @@ const Cart = () => {
   };
 
   const handleLogin = () => {
-    // Actual login handling will go here.
-    console.log('Login clicked');
+    // use the navigate function to navigate to '/login'
+    navigate('/SignIn');
   };
 
   return (
