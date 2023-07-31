@@ -14,10 +14,6 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <CartProvider>
-  <ApolloProvider client={client}>
-      <App />
-  </ApolloProvider>
-  </CartProvider>,
-  document.getElementById('root')
+        <App />,
+    document.getElementById('root')
 );

@@ -1,26 +1,28 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_SIDES } from '../utils/queries';
-import { CartContext } from '../contexts/CartContext'; // Import CartContext
+import { useStoreContext } from '../contexts/CartContext';
 
 const SideList = () => {
   const { loading, data } = useQuery(GET_SIDES);
-  const { addToCart } = useContext(CartContext); // Get the addToCart function from CartContext
+  const [state, dispatch] = useStoreContext();
+  const { cart } = state;
 
   if (loading) return <p>Loading...</p>;
 
   const sides = data ? data.sides : [];
 
   const handleAddToCart = (side) => {
-    addToCart({
-      side: {
+    dispatch({
+      type: 'ADD_TO_CART',
+      product: {
         id: side._id,
         name: side.name,
+        totalPrice: side.price,
       },
-      totalPrice: side.price,
     });
-  };
-
+  };  
+  
   return (
     <div className="menuItems">
       {sides.map((side) => (

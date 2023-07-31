@@ -6,6 +6,7 @@ import Pizza from './pages/Pizza';
 import Pasta from './pages/Pasta';
 import Sides from './pages/Sides';
 import Checkout from './pages/Checkout';
+import { StoreProvider } from './contexts/CartContext';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -15,6 +16,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+      <StoreProvider>
       <div className="logoContainer">
         <img src={require('./assets/images/logo.png')} alt="Demonic Pizza Business Logo" id="logo-image" />
       </div>
@@ -29,6 +31,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      </StoreProvider>
     </ApolloProvider>
   );
 }

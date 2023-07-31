@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PIZZAS, GET_CRUSTS, GET_EXTRAS } from '../utils/queries';
+import { useStoreContext } from '../contexts/CartContext';
 
 const PizzaList = ({ addToCart }) => {
   const { loading: pizzaLoading, data: pizzaData } = useQuery(GET_PIZZAS);
@@ -50,27 +51,31 @@ const PizzaList = ({ addToCart }) => {
     setTotalPrices(prices);
   }, [selectedCrusts, selectedExtras, pizzaData, crustData, extraData]);
 
+  const [state, dispatch] = useStoreContext();
+  const { cart } = state;
+  
   const handleAddToCart = (pizza) => {
     const crust = selectedCrusts[pizza._id];
     const extras = selectedExtras[pizza._id] || [];
     const totalPrice = totalPrices[pizza._id] || pizza.price;
-
+  
     if (!crust) {
       alert('Please select a crust before adding to cart.');
       return;
     }
-
-    addToCart({
-      pizza: {
+  
+    dispatch({
+      type: 'ADD_TO_CART',
+      product: {
         id: pizza._id,
         name: pizza.name,
+        crust,
+        extras,
+        totalPrice,
       },
-      crust,
-      extras,
-      totalPrice,
-    });
+    });   
   };
-
+  
   if (pizzaLoading || crustLoading || extraLoading) return <p>Loading...</p>;
 
   const pizzas = pizzaData ? pizzaData.pizzas : [];

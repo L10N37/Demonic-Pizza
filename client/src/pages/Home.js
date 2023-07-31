@@ -5,7 +5,7 @@ import PizzaList from '../components/PizzaList';
 import PastaList from '../components/PastaList';
 import SideList from '../components/SideList';
 import Cart from '../components/Cart';
-import { CartContext } from '../contexts/CartContext';
+//import { CartContext } from '../contexts/CartContext';
 
 const Home = () => {
   const [activeCategory, setActiveCategory] = useState('Pizza');
@@ -50,7 +50,7 @@ const Home = () => {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    
       <div>
         <div className="buttonContainer">
           <button
@@ -80,7 +80,7 @@ const Home = () => {
         </div>
         {activeContent}
       </div>
-    </CartContext.Provider>
+    
   );
 };
 
