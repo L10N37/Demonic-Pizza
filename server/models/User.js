@@ -22,11 +22,15 @@ const userSchema = new Schema({
     },
   },
   mobile: {
-    type: String, // Changed to String as phone numbers can contain non-digit characters
+    type: String,
     required: true,
   },
   address: {
     street: {
+      type: String,
+      required: true,
+    },
+    suburb: {
       type: String,
       required: true,
     },
@@ -38,7 +42,7 @@ const userSchema = new Schema({
       type: String,
       required: true,
     },
-    zip: {
+    postcode: {
       type: String,
       required: true,
     },
@@ -50,7 +54,6 @@ const userSchema = new Schema({
   },
 });
 
-// Method to validate password with bcrypt
 userSchema.methods.isValidPassword = async function(password) {
   try {
     return await bcrypt.compare(password, this.password);
@@ -59,7 +62,6 @@ userSchema.methods.isValidPassword = async function(password) {
   }
 }
 
-// Pre-save hook to hash password
 userSchema.pre('save', async function(next) {
   const user = this;
   if (user.isModified('password')) {

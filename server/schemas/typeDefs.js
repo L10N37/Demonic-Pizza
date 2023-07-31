@@ -24,7 +24,8 @@ const typeDefs = gql`
     name: String!
     description: String!
     price: Float!
-    image: String # Removed the exclamation mark to make it optional
+    image: String!
+    type: String!
   }
 
   type Extra {
@@ -64,10 +65,10 @@ const typeDefs = gql`
 
   type Address {
     street: String!
+    suburb: String!
     city: String!
     state: String!
-    zip: String!
-    country: String!
+    postcode: String!
   }
 
   type Auth {
@@ -92,10 +93,10 @@ const typeDefs = gql`
   type Mutation {
     createPizza(name: String!, ingredients: [String]!, description: String!, price: Float!): Pizza
     createPasta(name: String!, ingredients: [String]!, description: String!, price: Float!): Pasta
-    createSide(name: String!, description: String!, price: Float!): Side
+    createSide(name: String!, description: String!, price: Float!, type: String!): Side
     createExtra(name: String!, description: String!, price: Float!): Extra
     createCrust(name: String!, description: String!, price: Float!): Crust
-    addUser(firstName: String!, lastName: String!, email: String!, mobile: String!, password: String!, address: AddressInput): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, mobile: String!, password: String!, address: AddressInput!): Auth
     login(email: String!, password: String!): Auth
     createOrder(userId: ID!): Order
     addItemToOrder(orderId: ID!, itemId: ID!, quantity: Int!): Order
@@ -105,10 +106,10 @@ const typeDefs = gql`
 
   input AddressInput {
     street: String!
+    suburb: String!
     city: String!
     state: String!
-    zip: String!
-    country: String!
+    postcode: String!
   }
 `;
 

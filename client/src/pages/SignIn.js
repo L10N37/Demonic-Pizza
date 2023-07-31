@@ -1,5 +1,3 @@
-// SignIn.js
-
 import React, { useState } from 'react';
 import '../assets/css/SignInPage.css';
 
@@ -12,9 +10,9 @@ const SignIn = () => {
             street: '',
             city: '',
             state: '',
-            zip: '',
-            mobile: ''
+            postcode: '',
         },
+        mobile: '',
         password: ''
     });
 
@@ -26,7 +24,7 @@ const SignIn = () => {
     const [showSignUp, setShowSignUp] = useState(false);
 
     const handleSignUpChange = (e) => {
-        if (['street', 'city', 'state', 'zip', 'mobile'].includes(e.target.name)) {
+        if (['street', 'city', 'state', 'postcode'].includes(e.target.name)) {
             setSignUpData({
                 ...signUpData,
                 address: {
@@ -105,6 +103,10 @@ const SignIn = () => {
                                 <td><input type="text" name="street" className="inputField" value={signUpData.address.street} onChange={handleSignUpChange} required /></td>
                             </tr>
                             <tr>
+                            <td><label>Suburb:</label></td>
+                            <td><input type="text" name="suburb" className="inputField" value={signUpData.address.suburb} onChange={handleSignUpChange} required /></td>
+                            </tr>
+                            <tr>
                                 <td><label>City:</label></td>
                                 <td><input type="text" name="city" className="inputField" value={signUpData.address.city} onChange={handleSignUpChange} required /></td>
                             </tr>
@@ -113,12 +115,12 @@ const SignIn = () => {
                                 <td><input type="text" name="state" className="inputField" value={signUpData.address.state} onChange={handleSignUpChange} required /></td>
                             </tr>
                             <tr>
-                                <td><label>Zip:</label></td>
-                                <td><input type="text" name="zip" className="inputField" value={signUpData.address.zip} onChange={handleSignUpChange} required /></td>
+                                <td><label>Postcode:</label></td>
+                                <td><input type="text" name="postcode" className="inputField" value={signUpData.address.postcode} onChange={handleSignUpChange} required /></td>
                             </tr>
                             <tr>
                                 <td><label>Mobile:</label></td>
-                                <td><input type="number" name="mobile" className="inputField" value={signUpData.address.mobile} onChange={handleSignUpChange} required /></td>
+                                <td><input type="text" name="mobile" className="inputField" value={signUpData.mobile} onChange={handleSignUpChange} required /></td>
                             </tr>
                             <tr>
                                 <td><label>Password:</label></td>

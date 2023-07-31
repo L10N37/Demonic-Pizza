@@ -19,7 +19,7 @@ const Cart = () => {
   };
 
   const handleLogin = () => {
-    // use the navigate function to navigate to '/login'
+    // use the navigate function to navigate to '/SignIn'
     navigate('/SignIn');
   };
 

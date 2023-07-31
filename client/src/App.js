@@ -8,7 +8,6 @@ import Sides from './pages/Sides';
 import Checkout from './pages/Checkout';
 import SignIn from './pages/SignIn';
 
-
 const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
