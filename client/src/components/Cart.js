@@ -1,4 +1,4 @@
-// console.log(localStorage.getItem('token'));
+//console.log(localStorage.getItem('token'));
 
 import React, { useState, useEffect } from 'react';
 import '../assets/css/SignInPage.css';                      // Styling
@@ -94,9 +94,8 @@ useEffect(() => {
   const handleSignOut = () => {
     dispatch({ type: 'CLEAR_CART' });
     localStorage.removeItem('isSignedIn');
-    window.location.reload(); // reload on sign out to reset the page
+    // setIsSignedIn(false); // This line should be removed or set appropriately
   };
-  
 
   const [isSignedIn, setIsSignedIn] = useState(false); // Initialize isSignedIn as false
 

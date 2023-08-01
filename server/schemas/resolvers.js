@@ -1,5 +1,6 @@
 const { User, Order, Pizza, Pasta, Side, Extra, Crust } = require('../models');
 const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
