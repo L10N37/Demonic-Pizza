@@ -50,26 +50,37 @@ const Cart = () => {
       }));
     }
   };
-  
-  const handleSignUp = async (data) => {
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
     try {
-      await addUser({ variables: { ...data, address: { ...data.address } } });
-      localStorage.setItem('isSignedIn', 'true');
-      // setIsSignedIn(true); // This line should be removed or set appropriately
+      const { data } = await addUser({ variables: { ...signUpData, address: { ...signUpData.address } } });
+      console.log("Sign Up Data:", data);
+      const { token, user } = data.addUser; // corrected here
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      setIsSignedIn(true);
+      localStorage.setItem('isSignedIn', 'true'); // Store login status in local storage
     } catch (err) {
       console.error(err);
+      // handle error
     }
   };
 
-  const handleSignIn = async (data) => {
+const handleSignIn = async (e) => {
+    e.preventDefault();
     try {
-      await loginUser({ variables: { ...data } });
-      localStorage.setItem('isSignedIn', 'true');
-      // setIsSignedIn(true); // This line should be removed or set appropriately
+      const { data } = await loginUser({ variables: { ...signInData } });
+      console.log("Login Data:", data);
+      const { token, user } = data.login; // corrected here
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      setIsSignedIn(true);
     } catch (err) {
       console.error(err);
+      // handle error
     }
-  };
+  };  
 
   const handleSignOut = () => {
     dispatch({ type: 'CLEAR_CART' });

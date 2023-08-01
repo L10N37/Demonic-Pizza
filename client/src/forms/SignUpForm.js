@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SignUpForm = ({ signUpData, handleSignUpChange, handleSignUp }) => {
+const SignUpForm = ({ signUpData, handleSignUpChange, handleSignUp, setShowSignUp }) => {
   return (
-    <form className="signUpForm">
+    <form className="signUpForm" onSubmit={handleSignUp}>
       <table>
         <tbody>
           <tr>
@@ -157,8 +157,13 @@ const SignUpForm = ({ signUpData, handleSignUpChange, handleSignUp }) => {
           </tr>
         </tbody>
       </table>
-      <button type="submit" onClick={() => handleSignUp(signUpData)} className="signUpButton">
-        Sign Up
+      <button type="submit" className="signUpButton">Sign Up</button>
+      <button
+        type="button"
+        className="signInSwitch"
+        onClick={() => setShowSignUp(false)}
+      >
+        Switch to Sign In
       </button>
     </form>
   );
