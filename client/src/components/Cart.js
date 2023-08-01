@@ -115,19 +115,23 @@ useEffect(() => {
               <tr>
                 <th>Product Name</th>
                 <th>Quantity</th>
-                <th>Price</th>
+                <th>Price Each</th>
                 <th>Total Price</th>
+                <th>Crust</th>
+                <th>Extras</th>
               </tr>
             </thead>
             <tbody>
-              {cart.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>{item.quantity}</td>
-                  <td>${item.price.toFixed(2)}</td>
-                  <td>${item.totalPrice.toFixed(2)}</td>
-                </tr>
-              ))}
+            {cart.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.purchaseQuantity}</td>
+                <td>${item.totalPrice ? (item.totalPrice / item.purchaseQuantity).toFixed(2) : ''}</td>
+                <td>${item.totalPrice ? item.totalPrice.toFixed(2) : ''}</td>
+                <td>{item.crust || ''}</td>
+                <td>{item.extras ? item.extras.join(', ') : ''}</td>
+              </tr>
+            ))}
               <tr>
                 <td>
                   <label htmlFor="delivery">
@@ -147,7 +151,7 @@ useEffect(() => {
           </table>
         </div>
       )}
-
+  
       {!isSignedIn && !showSignUp && (
         <SignInForm 
           signInData={signInData} 
@@ -156,7 +160,7 @@ useEffect(() => {
           setShowSignUp={setShowSignUp} 
         />
       )}
-
+  
       {!isSignedIn && showSignUp && (
         <SignUpForm 
           signUpData={signUpData} 
@@ -166,7 +170,7 @@ useEffect(() => {
           isSignedIn={isSignedIn} // Pass isSignedIn to SignUpForm
         />
       )}
-
+  
       {isSignedIn && (
         <div>
           <p>You are logged in.</p>
@@ -175,6 +179,7 @@ useEffect(() => {
       )}
     </div>
   );
-};
+}
 
 export default Cart;
+
