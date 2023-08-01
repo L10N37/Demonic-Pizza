@@ -51,7 +51,7 @@ const Cart = () => {
     }
   };
 
-  const handleSignUp = async (e) => {
+const handleSignUp = async (e) => {
     e.preventDefault();
     try {
       const { data } = await addUser({ variables: { ...signUpData, address: { ...signUpData.address } } });
@@ -67,20 +67,27 @@ const Cart = () => {
     }
   };
 
-const handleSignIn = async (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     try {
       const { data } = await loginUser({ variables: { ...signInData } });
       console.log("Login Data:", data);
-      const { token, user } = data.login; // corrected here
+      const { token, user } = data.login;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       setIsSignedIn(true);
+      localStorage.setItem('isSignedIn', 'true'); // Set login status in local storage after successful sign in
     } catch (err) {
       console.error(err);
       // handle error
     }
-  };  
+  }; 
+
+useEffect(() => {
+    const isSignedInLocalStorage = localStorage.getItem('isSignedIn');
+    setIsSignedIn(isSignedInLocalStorage === 'true'); // Set isSignedIn to true only if localStorage['isSignedIn'] is 'true'
+  }, []);
+
 
   const handleSignOut = () => {
     dispatch({ type: 'CLEAR_CART' });
