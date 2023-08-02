@@ -1,5 +1,7 @@
 <h1>Demonic Pizza &amp; Pasta</h1>
 
+![Screenshot](ScreenShot.png)
+
 <p>Demonic Pizza &amp; Pasta is a full-stack restaurant ordering app where users can order their favorite pizza or pasta dishes right from their computers. Users can browse through a menu, customize their orders, add items to their cart, <del>and place their orders.</del></p>
 
 <p>This app provides functionalities such as:</p>
