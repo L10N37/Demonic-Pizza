@@ -80,6 +80,7 @@ h2 {
 @media screen and (max-width: 1052px) {
   .buttonContainer {
     flex-direction: column;
+    
   }
 
   .button {
@@ -160,6 +161,7 @@ h2 {
   .menuCard {
     width: 92%; /* Full width on mobile */
     padding: 10px; /* Reduce padding on mobile */
+    margin: 0 auto; /* Center the menu cards horizontally */
   }
 
   .menuItemPicture {
