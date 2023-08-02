@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const secret = process.env.JWT_SECRET || 'your_jwt_secret'; // replace 'your_jwt_secret' with your actual secret
+const secret = process.env.JWT_SECRET;
+const { User } = require('../models');
 
 // Function to create a token
 exports.signToken = function(user) {
@@ -15,4 +16,19 @@ exports.signToken = function(user) {
       expiresIn: '1d' // token will expire in 1 day
     }
   );
+};
+
+
+const authMiddleware = async ({ req }) => {
+  const token = req.headers.authorization || '';
+  if (token) {
+    try {
+      const { _id } = jwt.verify(token, secret);
+      const user = await User.findById(_id);
+      return { user };
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  return {};
 };

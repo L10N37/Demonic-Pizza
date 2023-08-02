@@ -40,7 +40,7 @@ const resolvers = {
           .populate('orders');
         return userData;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('TESTING: You need to be logged in!');
     },
   },
   Mutation: {

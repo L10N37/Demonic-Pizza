@@ -1,22 +1,40 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
-const { authMiddleware } = require('./utils/auth');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
+// USE ENVIRONMENT VARIABLES
+require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const User = require('./models/User');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-const cors = require('cors');
 app.use(cors());
+
+app.use(async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1] || ''; // Adjusted to get token after 'Bearer '
+  console.log('Token:', token); // debug log
+  if (token) {
+    try {
+      const { _id } = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(_id);
+      req.user = user;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  next();
+});
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: ({ req }) => ({ user: req.user }),
   introspection: true, // enables introspection of the schema
   playground: true, // enables the actual playground
 });
@@ -36,7 +54,7 @@ app.get('*', (req, res) => {
 const startApolloServer = async () => {
   await server.start();
   server.applyMiddleware({ app });
-  
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
@@ -44,6 +62,6 @@ const startApolloServer = async () => {
     });
   });
 };
-  
+
 // Call the async function to start the server
 startApolloServer();

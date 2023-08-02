@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
+    "dotenv": "^16.3.1",
     "graphql": "^16.7.1",
     "jsonwebtoken": "latest",
     "webpack": "^4.46.0"
