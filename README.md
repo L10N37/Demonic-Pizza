@@ -41,7 +41,7 @@
 
 <p>Clone the repository:</p>
 
-<pre>git clone https://github.com/your-github-username/demonic-pizza.git</pre>
+<pre>git clone https://github.com/L10N37/demonic-pizza.git</pre>
 
 <p>Navigate into the project directory:</p>
 
