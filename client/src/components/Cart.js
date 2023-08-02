@@ -1,18 +1,18 @@
-// console.log(localStorage.getItem('token'));
-
 import React, { useState, useEffect } from 'react';
-import '../assets/css/SignInPage.css'; // Styling
+import { useQuery, useMutation } from '@apollo/client';
+import '../assets/css/SignInPage.css';
 import { useStoreContext } from '../contexts/CartContext';
-import { useMutation } from '@apollo/client';
 import { SIGNUP_MUTATION, LOGIN_MUTATION } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
 import SignInForm from '../forms/signInForm';
 import SignUpForm from '../forms/SignUpForm';
 
 const Cart = () => {
-  const [isDelivery, setDelivery] = useState(false);
+  const [isDelivery, setDelivery] = useState(() => localStorage.getItem('isDelivery') === 'true');
   const [showSignUp, setShowSignUp] = useState(false);
   const [state, dispatch] = useStoreContext();
   const { cart } = state;
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const [signInData, setSignInData] = useState({ email: '', password: '' });
   const [signUpData, setSignUpData] = useState({
@@ -58,14 +58,13 @@ const Cart = () => {
     try {
       const { data } = await addUser({ variables: { ...signUpData, address: { ...signUpData.address } } });
       console.log("Sign Up Data:", data);
-      const { token, user } = data.addUser; // corrected here
+      const { token, user } = data.addUser;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       setIsSignedIn(true);
-      localStorage.setItem('isSignedIn', 'true'); // Store login status in local storage
+      localStorage.setItem('isSignedIn', 'true');
     } catch (err) {
       console.error(err);
-      // handle error
     }
   };
 
@@ -78,38 +77,46 @@ const Cart = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       setIsSignedIn(true);
-      localStorage.setItem('isSignedIn', 'true'); // Set login status in local storage after successful sign in
+      localStorage.setItem('isSignedIn', 'true');
     } catch (err) {
       console.error(err);
-      // handle error
     }
   };
 
   useEffect(() => {
     const isSignedInLocalStorage = localStorage.getItem('isSignedIn');
-    setIsSignedIn(isSignedInLocalStorage === 'true'); // Set isSignedIn to true only if localStorage['isSignedIn'] is 'true'
+    setIsSignedIn(isSignedInLocalStorage === 'true');
   }, []);
 
   const handleSignOut = () => {
     dispatch({ type: 'CLEAR_CART' });
     localStorage.removeItem('isSignedIn');
-    window.location.reload(); // reload on sign out to reset the page
+    localStorage.removeItem('isDelivery');
+    window.location.reload();
   };
-
-  const [isSignedIn, setIsSignedIn] = useState(false); // Initialize isSignedIn as false
 
   const totalCartPrice = cart.reduce((total, cartItem) => total + cartItem.totalPrice, 0);
   const totalCartPriceWithDelivery = isDelivery ? totalCartPrice + 12.99 : totalCartPrice;
 
+  useEffect(() => {
+    localStorage.setItem('isDelivery', isDelivery);
+  }, [isDelivery]);
+
+  // Fetch user data
+  const { loading, error, data } = useQuery(GET_ME, {
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    }
+  });
+
   return (
     <div className="signInContainer">
-      {/* Check if the user is signed in and the cart has items */}
       {isSignedIn && cart.length > 0 && (
         <div>
           <h2>Cart Contents</h2>
-          {/* Render the cart contents in a table */}
           <table>
-            {/* Table header */}
             <thead>
               <tr>
                 <th>Product Name</th>
@@ -120,9 +127,7 @@ const Cart = () => {
                 <th>Extras</th>
               </tr>
             </thead>
-            {/* Table body */}
             <tbody>
-              {/* Map through the cart items and display them in rows */}
               {cart.map((item) => (
                 <tr key={item.id}>
                   <td>{item.name}</td>
@@ -133,7 +138,6 @@ const Cart = () => {
                   <td>{item.extras ? item.extras.join(', ') : ''}</td>
                 </tr>
               ))}
-              {/* Additional row for the delivery option */}
               <tr>
                 <td>
                   <label htmlFor="delivery">
@@ -143,18 +147,33 @@ const Cart = () => {
                       checked={isDelivery}
                       onChange={() => setDelivery(prevDelivery => !prevDelivery)}
                     />
-                    Add delivery for 12.99
+                    Add delivery for $12.99
                   </label>
                 </td>
                 <td>Total Price:</td>
                 <td>${totalCartPriceWithDelivery.toFixed(2)}</td>
               </tr>
+              {isDelivery && !loading && data?.me && (
+                <tr>
+                  <td colSpan="6">
+                    <div id = "userDetails">
+                      <p><strong>First Name:</strong> {data.me.firstName}</p>
+                      <p><strong>Last Name:</strong> {data.me.lastName}</p>
+                      <p><strong>Mobile:</strong> {data.me.mobile}</p>
+                      <p><strong>Address:</strong> {`${data.me.address.street}, ${data.me.address.suburb}, ${data.me.address.city}, ${data.me.address.state}, ${data.me.address.postcode}`}</p>
+                    </div>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
       )}
 
-      {/* If the user is not signed in and not showing the sign-up form, show the sign-in form */}
+    {isSignedIn && cart.length === 0 && (
+            <p id = "cartEmptyText">Your cart is empty</p>
+          )}
+
       {!isSignedIn && !showSignUp && (
         <SignInForm
           signInData={signInData}
@@ -164,29 +183,24 @@ const Cart = () => {
         />
       )}
 
-      {/* If the user is not signed in and showing the sign-up form, show the sign-up form */}
       {!isSignedIn && showSignUp && (
         <SignUpForm
           signUpData={signUpData}
           handleSignUpChange={handleSignUpChange}
           handleSignUp={handleSignUp}
           setShowSignUp={setShowSignUp}
-          isSignedIn={isSignedIn} // Pass isSignedIn to SignUpForm
+          isSignedIn={isSignedIn}
         />
       )}
 
-      {/* If the user is signed in, display a message and a "Sign Out" button */}
       {isSignedIn && (
         <div>
           <p>You are logged in.</p>
-          <button id="signOutButton" onClick={handleSignOut}>Sign Out</button>
+          <button id = 'signOutButton' onClick={handleSignOut}>Sign Out</button>
         </div>
       )}
 
-      {/* If the user is signed in but the cart is empty, show "Your cart is empty" */}
-      {isSignedIn && cart.length === 0 && (
-        <p id = "cartEmptyText">Your cart is empty</p>
-      )}
+      
     </div>
   );
 };

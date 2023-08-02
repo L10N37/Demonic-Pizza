@@ -235,3 +235,13 @@ td:last-child, th:last-child {
   cursor: pointer;
   border-radius: 4px; /* Optional: add border radius */
 }
+
+#userDetails {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: 'Creepster', cursive; /* A horror style font. */
+  padding: 20px;
+  border-radius: 5px;
+  font-size:20px;
+}
