@@ -1,3 +1,5 @@
+// console.log(localStorage.getItem('token'));
+
 import React, { useState, useEffect } from 'react';
 import '../assets/css/SignInPage.css'; // Styling
 import { useStoreContext } from '../contexts/CartContext';

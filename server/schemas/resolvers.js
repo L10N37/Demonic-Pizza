@@ -37,10 +37,9 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
-          .populate('orders');
         return userData;
       }
-      throw new AuthenticationError('TESTING: You need to be logged in!');
+      throw new AuthenticationError("Yay, this message won't show again because it's working");
     },
   },
   Mutation: {

@@ -1,6 +1,7 @@
+// console.log(localStorage.getItem('token'));
+
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
-const { User } = require('../models');
 
 // Function to create a token
 exports.signToken = function(user) {
